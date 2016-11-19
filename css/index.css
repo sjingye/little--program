@@ -13,7 +13,6 @@ body {
 #bugao{
 	height: 130px;
 	width: 100%;
-	opacity: 0;
 }
 #header {
 	height: 130px;
@@ -24,7 +23,7 @@ body {
 	position: fixed;
 	top:0;
 	left:0;
-	z-index: 10;
+	z-index: 1000;
 }
 .headercontent {
 	height: 130px;
@@ -131,6 +130,14 @@ body {
 .tabbgc  li:last-child a.active{
 	background: url(../img/cbg3-3.jpg) 0 0 no-repeat;
 }
+#graphic,
+#web,
+#about,
+#btcontact {
+	padding-top: 130px;
+	margin-top: -130px;
+}
+
 #content {
 	width: 980px;
 	margin:0 auto ;
@@ -272,8 +279,8 @@ body {
 }
 #web {
 	/*height: 706px;*/
-	padding-top: 26px;
-	margin-top: -26px;
+	/*padding-top: 26px;
+	margin-top: -26px;*/
 	border-bottom: #443e3e 1px dotted;
 	-webkit-transition: 2s;
 	-moz-transition: 2s;
@@ -388,8 +395,7 @@ body {
 .webpage {
 	width: 940px;
 	height: 51px;
-	margin-top: 15px;
-	margin-left: 20px;
+	margin-top: 15px 0 100px  20px; 
 	background: url(../img/webpagebg.png) no-repeat;
 }
 .webpage .tabbtns {
@@ -596,7 +602,7 @@ body {
 	position: fixed;
 	left:0;
 	top:0;
-	z-index:999;
+	z-index:9999;
 	display: none;
 }
 .mask-bg{
@@ -606,10 +612,21 @@ body {
 .big-pic{
 	width:970px;
 	height: 470px;
-	border:10px solid #fff;
+	border:4px solid #fff;
 	position: absolute;
 	left:50%;
 	top:50%;
 	margin-left: -485px;
 	margin-top: -235px;
+}
+.big-pic img:nth-of-type(1){
+	width:970px;
+	height: 470px;
+}
+.big-pic img:nth-of-type(2){
+	width: 39px;
+	height: 39px;
+	position: absolute;
+	top:-20px;
+	right:-20px;
 }

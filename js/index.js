@@ -32,7 +32,7 @@
 	//banner无缝滚动
 	function tabBanner(num){
 		topBannerImgs[1].src = arrImg[num];
-		Move(topBanner,{"left":-841},1000,function(){
+		Move(topBanner,{"left":-841},600,function(){
 			topBanner.style.left = 0;
 			topBannerImgs[0].src = arrImg[num];
 		});
@@ -138,37 +138,14 @@
 			tabbtn1.style.left = 134*(this.index)+"px";
 		}
 	}
-	/*tabHeader[0].onclick = function(){
-		window.scrollTo(0,0);
-	}
-	tabHeader[1].onclick = function(){
-		window.scrollTo(0,677);
-	}
-	tabHeader[2].onclick = function(){
-		window.scrollTo(0,1283);
-	}
-	tabHeader[3].onclick = function(){
-		window.scrollTo(0,1935);
-	}*/
-	/*var _targetTop = jQuery("#"+_rel).offset().top;
-	jQuery("html,body").animate({scrollTop:_targetTop},o.timer);*/
-
-	/*for (var i = 0; i < tabHeader.length; i++) {
-		tabHeader[i].index = i;
-		tabHeader[i].onclick = function(){
-			console.log(getDis(contentSections[this.index])-130);
-			console.log(contentSections[1].offsetTop);
-			window.scrollTo(0,getDis(contentSections[this.index])||0);
-		}
-	}
 
 	function getDis(element){
 		var y = element.getBoundingClientRect().top;
 		y += document.documentElement.scrollTop || document.body.scrollTop;
 		return y;
-	}*/
-
+	}
     //web-design-works的选项卡切换
+    var k = 0;
     var works = document.querySelectorAll(".web-design-works>div");
     var webnavs = document.querySelectorAll(".webnav a");
     for (var i = 0; i < webnavs.length; i++) {
@@ -180,38 +157,51 @@
     		}
     		webnavs[this.index].parentNode.className = "allweb";
     		works[this.index].className = "active";
+    		k=this.index;
+    		big(k);
     	}
     }
-
+    var bigImgs=[
+    	["img/白云寺.jpg","img/baby.jpg","img/smartbox.jpg","img/游戏网站1.jpg","img/游戏网站2.jpg","img/邵攀导演工作室.jpg"],
+    	["img/baby.jpg","img/游戏网站1.jpg","img/游戏网站2.jpg","img/游戏网站1.jpg","img/游戏网站2.jpg","img/凤凰巢咖啡.jpg"],
+    	["img/白云寺.jpg","img/baby.jpg","img/smartbox.jpg"],
+    	["img/白云寺.jpg","img/baby.jpg","img/smartbox.jpg","img/游戏网站1.jpg","img/游戏网站2.jpg"],
+    	["img/白云寺.jpg","img/baby.jpg","img/smartbox.jpg"]
+    ];
     // 放大镜效果
-    var webImgs = document.querySelectorAll(".web-design-works .webimg");
-    var mask = document.getElementById("#mask");
-    var bigPicImgs = document.querySelectorAll(".big-pic img");
-
-    for (var i = 0; i < webImgs.length; i++) {
-    	 webImgs[i].index = i;
-    	 webImgs[i].onmouseover = function(){
-	    	var img = this.getElementsByTagName("img")[0];
-	    	var webZoom = this.getElementsByTagName("div")[0];
-	    	img.style.opacity  = 0;
-	    	webZoom.style.top = "-122px";
-	    	webZoom.onclick = function (){
-	    		mask.style.display = "block";
-	    		bigPicImgs[0].src = ""
+    big(k);
+    function big(k){
+    	var webImgs = document.querySelectorAll(".web-design-works .active .webimg");
+	    var mask = document.getElementById("mask");
+	    var bigPicImgs = document.querySelectorAll(".big-pic img");
+	    var imgs1 = document.querySelectorAll(".web-design-works .active .webimg .img1");
+	    var webZooms = document.querySelectorAll(".web-design-works .active .webimg>div");
+	    for (var i = 0; i < webZooms.length; i++) {
+	    	webImgs[i].index=i;
+	    	webZooms[i].a=i;
+	    	webImgs[i].onmouseover = function(){
+		    	imgs1[this.index].style.opacity  = 0;
+		    	webZooms[this.index].style.top = "-122px";
 	    	}
-	    	this.onmouseout = function(){
-		    	img.style.opacity  = 1;
-		    	webZoom.style.top = "-245px";
+	    	webZooms[i].onclick = function (){
+	    		console.log(1)
+	    		mask.style.display = "block";
+	    		bigPicImgs[0].src = bigImgs[k][this.a];
+	    		bigPicImgs[1].onclick = function(){
+	    			mask.style.display = "none";
+	    		}
+	    	}
+		    webImgs[i].onmouseout = function(){
+		    	imgs1[this.index].style.opacity  = 1;
+		    	webZooms[this.index].style.top = "-245px";
 		    }
-	    }
+    	}	
     }
 
     //aboutus切换选项卡
-    
     var aboutNavLis = document.querySelectorAll(".aboutnav>li");
     var aboutNavMove = document.querySelector(".aboutnavmove");
     var aboutUl = document.querySelector("#aboutUl");
-	
 	for (var i = 0; i < aboutNavLis.length; i++) {
 		aboutNavLis[i].index = i;
 		aboutNavLis[i].onclick = function(){
